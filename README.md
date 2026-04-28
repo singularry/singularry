@@ -1,6 +1,6 @@
 # Singularry
 
-An AI-powered DeFi platform with modular smart contract wallets, automated trading strategies, and natural language interaction built on BNB Smart Chain (BSC) and compatible with other EVM networks.
+An AI-powered DeFi platform with autonomous trading agents, modular smart contract wallets, proprietary machine learning models, and natural language interaction — built on BNB Smart Chain and compatible with EVM networks.
 
 ---
 
@@ -12,9 +12,11 @@ An AI-powered DeFi platform with modular smart contract wallets, automated tradi
 | **Smart Contracts** | Solidity ^0.8.x, EIP-2535 Diamond Standard |
 | **Frontend** | Next.js 15, React 19, TypeScript, Tailwind CSS |
 | **Web3** | ethers.js v6, wagmi, viem, Privy authentication |
-| **AI** | Vercel AI SDK, Claude/GPT models, tool-use architecture |
-| **Development** | Hardhat, OpenZeppelin libraries, Drizzle ORM |
-| **Infrastructure** | Vercel, Neon PostgreSQL, BSCScan API |
+| **AI / ML** | Multi-model LLM orchestration, ONNX model serving, reinforcement learning |
+| **Agent Runtime** | Node.js, TypeScript, autonomous 24/7 operation |
+| **ML Platform** | Python, FastAPI, GPU-accelerated training pipeline |
+| **Data** | PostgreSQL + pgvector, TimescaleDB (time-series), Redis |
+| **Infrastructure** | Vercel, Railway, Neon PostgreSQL |
 
 ---
 
@@ -24,11 +26,240 @@ An AI-powered DeFi platform with modular smart contract wallets, automated tradi
 |---------|----------|--------|
 | BNB Smart Chain Mainnet | 56 | **Primary** |
 | BNB Smart Chain Testnet | 97 | Testing |
+| HyperEVM | 999 | Supported |
 | Ethereum Mainnet | 1 | Supported |
 | Polygon | 137 | Supported |
 | Arbitrum | 42161 | Supported |
 | Optimism | 10 | Supported |
 | Base | 8453 | Supported |
+
+---
+
+## Autonomous AI Agent
+
+Singularry's core differentiator is a **24/7 autonomous agent runtime** — a self-operating trading and portfolio management system that continuously monitors markets, evaluates opportunities, and executes strategies without human intervention.
+
+### Architecture
+
+```
+┌──────────────────────────────────────────────────────────────────────┐
+│                     Frontend (Next.js)                                │
+│   AI Chat  │  Dashboard  │  Strategies  │  Portfolio  │  Admin       │
+└──────────────────────────────────────────────────────────────────────┘
+                               │
+                               ▼
+┌──────────────────────────────────────────────────────────────────────┐
+│                     Agent Runtime (Node.js)                           │
+├──────────────────────────────────────────────────────────────────────┤
+│                                                                      │
+│   ┌────────────┐   ┌────────────┐   ┌─────────────┐                 │
+│   │   Brain     │   │  Scheduler │   │   Memory    │                 │
+│   │  (ReAct +  │   │  (Lane-    │   │ (3-Tier     │                 │
+│   │  Workflows)│   │   Based)   │   │  Adaptive)  │                 │
+│   └─────┬──────┘   └─────┬──────┘   └──────┬──────┘                 │
+│         │                 │                 │                         │
+│   ┌─────▼─────────────────▼─────────────────▼──────┐                 │
+│   │              Tool Registry (140+ tools)         │                 │
+│   │   Wallet │ CEX │ DEX │ Market │ Portfolio │ ML  │                 │
+│   └─────────────────────┬───────────────────────────┘                 │
+│                         │                                            │
+│   ┌─────────────────────▼───────────────────────────┐                 │
+│   │          Execution Engine (DEX + CEX)            │                 │
+│   └─────────────────────────────────────────────────┘                 │
+│                                                                      │
+├──────────────────────────────────────────────────────────────────────┤
+│   Security: Capability Bitmap │ Simulation │ HITL Approvals          │
+└──────────────────────────────────────────────────────────────────────┘
+         │                                          │
+         ▼                                          ▼
+┌──────────────────┐                    ┌──────────────────────────┐
+│  ML Platform     │                    │  SLY Wallet (Diamond)    │
+│  (Python)        │                    │  ┌──────┐ ┌──────┐      │
+│                  │                    │  │Venus │ │ DCA  │ ...  │
+│  RL Ensemble     │                    │  │Facet │ │Facet │      │
+│  Regime Classif. │                    │  └──────┘ └──────┘      │
+│  Vol Forecaster  │                    └──────────────────────────┘
+│  Drift Monitor   │                                │
+└──────────────────┘                                ▼
+                                        ┌──────────────────────────┐
+                                        │     DeFi Protocols       │
+                                        │ Venus │ Thena │ Lista    │
+                                        │ Pendle│ LiFi  │ Binance  │
+                                        └──────────────────────────┘
+```
+
+### Brain & Decision Engine
+
+The agent's **Brain** is a reasoning engine that plans and executes multi-step DeFi operations:
+
+- **ReAct Loop** — iterative reason-act-observe cycle for tool-augmented decision-making
+- **Workflow Engine** — orchestrates complex multi-step operations (rebalancing, yield migration, cross-chain bridging) with checkpointing and crash recovery
+- **Intelligent Model Routing** — automatically selects the optimal LLM based on task complexity and criticality, routing routine tasks to faster models and financial decisions to the most capable
+- **Human-in-the-Loop (HITL)** — high-value or risky operations are paused for user approval before execution, with configurable thresholds
+
+### Proprietary ML Models
+
+Singularry runs a dedicated **machine learning platform** with proprietary models trained on GPU infrastructure:
+
+| Model | Purpose |
+|-------|---------|
+| **RL Ensemble** | Multi-agent reinforcement learning system for adaptive strategy selection and position sizing |
+| **Regime Classifier** | Identifies current market regime (trending, mean-reverting, volatile) to dynamically adjust strategy parameters |
+| **Volatility Forecaster** | Predicts near-term volatility for dynamic risk calibration and position sizing |
+| **Dynamic Clustering** | Groups assets by behavioral similarity for portfolio construction and diversification |
+
+- Models are trained on GPU and exported to **ONNX** for efficient production inference
+- **Drift monitoring** continuously tracks prediction accuracy and feature distribution shifts, triggering model reloads when performance degrades
+- Models hot-reload in production without service downtime
+
+### Three-Tier Memory System
+
+The agent maintains persistent memory across sessions using **vector embeddings** for intelligent retrieval:
+
+- **Semantic Memory** — user preferences, facts, and learned context (risk tolerance, preferred protocols, etc.)
+- **Episodic Memory** — trade history, market events, and outcomes for experience-driven decision-making
+- **Procedural Memory** — strategy performance scores continuously updated via reinforcement learning, enabling the agent to learn which strategies work best under which market conditions
+
+Retrieval uses **hybrid search** combining dense vector similarity with keyword matching for high-recall context injection.
+
+### Multi-Tier Strategy Portfolio
+
+The agent manages strategies spanning conservative to aggressive risk profiles:
+
+| Tier | Risk Level | Strategy Types |
+|------|-----------|---------------|
+| **Tier 1** | Conservative | Dollar-cost averaging, market-cap index tracking |
+| **Tier 2** | Moderate | Risk-parity allocation, AI-driven portfolio optimization, grid trading |
+| **Tier 3** | Active | Momentum trading, funding rate arbitrage, basis trading |
+| **Tier 4** | Advanced | Yield optimization, concentrated liquidity management, delta-neutral strategies |
+| **Tier 5** | Aggressive | Cross-venue arbitrage, prediction markets, multi-leg strategies |
+
+Each strategy follows a full lifecycle: **evaluate** (market conditions) → **execute** (position entry) → **monitor** (ongoing management) → **exit** (position close).
+
+### Execution Engine
+
+Unified execution layer supporting both centralized and decentralized exchanges:
+
+- **DEX Execution** — on-chain swaps via aggregator routing through the Diamond wallet
+- **CEX Execution** — order management on centralized exchanges with TWAP and limit order support
+- **Transaction Simulation** — high-value trades are simulated before execution to prevent costly errors
+
+### Data Pipeline
+
+Automated data collection powering the ML models and trading decisions:
+
+- **Market data** — OHLCV candles, order book snapshots, funding rates
+- **Macro indicators** — economic data (rates, inflation, volatility indices)
+- **On-chain metrics** — TVL, whale movements, protocol health indicators
+- **Sentiment analysis** — aggregated market sentiment scoring
+- **Time-series storage** — hypertable-optimized for fast range queries and analysis
+
+---
+
+## SLY Wallets (Smart Contract Wallets)
+
+Modular smart contract wallets using the **EIP-2535 Diamond Standard**:
+
+- **Upgradeable Architecture** — add, replace, or remove strategy modules without migrating assets
+- **Facet-Based Design** — each DeFi strategy is a separate on-chain module
+- **Capability Bitmap** — on-chain access control encoded as a `uint256` bitmap for O(1) permission checks
+- **Gasless Transactions** — meta-transaction support via relayer infrastructure
+- **Delegation & Co-Signing** — multi-party wallet management via Privy TEE signing
+- **Unified Asset Management** — single wallet address for all DeFi operations across protocols
+
+```
+User calls wallet.supplyToVenus(100 USDT)
+  → Diamond looks up selector
+  → Routes to Venus Facet
+  → Facet executes using wallet's storage
+```
+
+---
+
+## AI Chat Interface
+
+Natural language DeFi interaction:
+
+- **Intent Understanding** — swap, bridge, lend, borrow, stake, and complex multi-step requests
+- **Multi-Chain Operations** — execute transactions across supported networks via conversation
+- **Portfolio Analysis** — AI-driven insights, risk assessment, and strategy recommendations
+- **Expert Mode** — auto-execute transactions for experienced users
+- **Real-Time Data** — live market data, on-chain analytics, and web search integration
+
+---
+
+## Automated Strategies
+
+### On-Chain Strategy Facets
+
+| Strategy | Description | Key Features |
+|----------|-------------|--------------|
+| **DCA** | Periodic token purchases | TWAP oracle, slippage protection, configurable intervals |
+| **DRIP** | Buy-the-dip / sell-the-rip | EMA-based triggers, customizable deviation thresholds |
+| **VTYO** | Venus-Thena yield optimization | Leveraged yield farming, auto-compounding, health monitoring |
+| **Yield Loop** | Leveraged yield strategies | Pendle PT support, sUSDe integration, auto-deleveraging |
+| **Lista** | CDP management | BNB/stablecoin looping, liquidation alerts, automated unwinding |
+| **VLP** | Venus liquidation protection | Health monitoring, auto-repay triggers |
+
+### Agent-Managed Strategies
+
+Additional strategies managed by the autonomous agent runtime:
+
+- Hierarchical risk parity portfolio allocation
+- AI-optimized portfolio rebalancing
+- Grid trading with adaptive grid spacing
+- Funding rate arbitrage (CEX ↔ DEX)
+- Basis trading (spot vs. perpetual)
+- Cross-venue arbitrage
+- Concentrated liquidity delta-neutral positions
+- Passive yield vaults (ERC-4626)
+
+---
+
+## Protocol Integrations
+
+| Protocol | Integration |
+|----------|------------|
+| **Venus Protocol** | Lending, borrowing, liquidation protection |
+| **Thena** | V3 concentrated liquidity, yield farming |
+| **Lista DAO** | CDP management, lisUSD minting |
+| **Pendle** | Principal token strategies |
+| **Aster DEX** | Perpetual futures trading |
+| **Binance** | Spot + futures trading, market data |
+| **LiFi** | Cross-chain swaps and bridging |
+| **Enso** | DeFi aggregation and routing |
+| **Altura Vault** | ERC-4626 yield vaults (HyperEVM) |
+
+---
+
+## Non-Fungible Agents (NFA)
+
+On-chain AI agent identity and ownership:
+
+- **BAP578 Standard** — tokenized agent ownership as NFTs
+- **On-Chain Learning** — strategy evolution recorded on-chain
+- **Capability System** — bitmap-encoded permissions control agent actions
+- **Automated Execution** — DeFi operations with verifiable on-chain provenance
+
+---
+
+## Security
+
+| Audit Firm | Report |
+|------------|--------|
+| **Fairyproof** | [View Audit](https://www.fairyproof.com/report/Singularry) |
+
+### Security Practices
+
+- All strategy facets audited before mainnet deployment
+- **Transaction simulation** — high-value trades simulated before execution; simulation failure blocks the trade
+- **Human-in-the-Loop approvals** — dangerous operations require explicit user confirmation
+- **Capability-gated tools** — on-chain bitmap controls agent access per wallet
+- **Encrypted credential storage** — AES-256-GCM encryption for all stored keys
+- **Daily loss circuit breakers** — per-strategy and per-user spending limits
+- Timelocked administrative functions
+- Emergency pause capability
+- Real-time position health monitoring with proactive alerts
 
 ---
 
@@ -92,199 +323,52 @@ An AI-powered DeFi platform with modular smart contract wallets, automated tradi
 
 ---
 
-## Features
+## Notifications
 
-### 1. SLY Wallets (Smart Contract Wallets)
+Multi-channel alerting:
 
-Modular smart contract wallets using the **EIP-2535 Diamond Standard**, enabling:
-
-- **Upgradeable Architecture**: Add, replace, or remove functionality without migrating assets
-- **Facet-Based Design**: Each DeFi strategy is a separate facet that can be attached/detached
-- **Gasless Transactions**: Meta-transactions supported via relayer infrastructure
-- **Multi-Signature Support**: Co-owner capabilities via Privy integration
-- **Unified Asset Management**: Single wallet for all DeFi operations
-
-### 2. AI-Powered Chat Interface
-
-Natural language DeFi interaction powered by Claude and GPT models:
-
-- **Intent Classification**: AI understands swap, bridge, lend, borrow, stake requests
-- **Multi-Chain Operations**: Execute transactions across supported networks
-- **Portfolio Analysis**: AI-driven insights and recommendations
-- **Web Search Integration**: Real-time market data and research
-- **Expert Mode**: Auto-execute transactions for experienced users
-
-### 3. Automated Trading Strategies (Playbooks)
-
-#### DCA (Dollar Cost Averaging)
-- Automated periodic token purchases
-- TWAP oracle integration for fair pricing
-- Configurable intervals and amounts
-- Slippage protection
-
-#### DRIP (Buy-the-Dip / Sell-the-Rip)
-- Automated buy orders when price drops below threshold
-- Automated sell orders when price rises above threshold
-- EMA-based trigger calculations
-- Customizable deviation percentages
-
-#### VTYO (Venus Thena Yield Optimizer)
-- Leveraged yield farming on Thena V3 pools
-- Automated LP position management
-- Yield harvesting and auto-compounding
-- Health factor monitoring
-
-#### Yield Loop
-- Leveraged yield farming strategies
-- Pendle PT (Principal Token) support
-- sUSDe integration on BSC
-- Position health monitoring and liquidation alerts
-
-#### Lista DAO Integration
-- CDP (Collateralized Debt Position) management
-- BNB and stablecoin looping strategies
-- Position unwinding and deleveraging
-- Real-time health monitoring
-
-### 4. Protocol Integrations
-
-| Protocol | Integration Type |
-|----------|-----------------|
-| **Venus Protocol** | Lending, borrowing, liquidation protection |
-| **Thena** | V3 concentrated liquidity, yield farming |
-| **Lista DAO** | CDP management, lisUSD minting |
-| **Pendle** | Principal token strategies |
-| **LiFi** | Cross-chain swaps and bridging |
-| **0x Protocol** | DEX aggregation for optimal swap rates |
-| **Expand Network** | Multi-chain bridge integration |
-
-### 5. Security Features
-
-- **Smart Contract Audits**: Audited by Fairyproof
-- **Timelocks**: Administrative actions require waiting periods
-- **Pause Control**: Emergency pause functionality
-- **Health Monitoring**: Real-time position health tracking
-- **Liquidation Alerts**: Proactive warnings before liquidation
-
-### 6. Gas Optimization
-
-- **Multicall Batching**: Batch multiple calls into single transactions
-- **Gas-Efficient Design**: Optimized for BNB Smart Chain low fees
-- **Provider Pooling**: Singleton RPC connections to reduce overhead
+- **Telegram** — real-time trade alerts, strategy updates, risk warnings
+- **Discord** — community and team notifications
+- **Email** — daily summaries and critical alerts
+- **WebSocket** — live streaming to the frontend dashboard
 
 ---
 
-## Architecture Overview
+## Why Is Our GitHub Private?
 
-```
-┌─────────────────────────────────────────────────────────────┐
-│                    Frontend (Next.js)                        │
-├─────────────────────────────────────────────────────────────┤
-│  AI Chat Interface  │  Dashboard  │  Playbooks  │  Admin    │
-└─────────────────────────────────────────────────────────────┘
-                              │
-                              ▼
-┌─────────────────────────────────────────────────────────────┐
-│                    AI Tool System                            │
-├─────────────────────────────────────────────────────────────┤
-│  classifyIntentV2  │  executeMultiStep  │  analyzeCrypto    │
-└─────────────────────────────────────────────────────────────┘
-                              │
-                              ▼
-┌─────────────────────────────────────────────────────────────┐
-│                 SLY Wallet (Diamond Proxy)                   │
-├─────────────────────────────────────────────────────────────┤
-│  ┌─────────┐ ┌─────────┐ ┌─────────┐ ┌─────────┐           │
-│  │  Venus  │ │   DCA   │ │  DRIP   │ │  VTYO   │  ...      │
-│  │  Facet  │ │  Facet  │ │  Facet  │ │  Facets │           │
-│  └─────────┘ └─────────┘ └─────────┘ └─────────┘           │
-└─────────────────────────────────────────────────────────────┘
-                              │
-                              ▼
-┌─────────────────────────────────────────────────────────────┐
-│                    DeFi Protocols                            │
-├─────────────────────────────────────────────────────────────┤
-│  Venus  │  Thena  │  Lista  │  Pendle  │  LiFi  │  0x      │
-└─────────────────────────────────────────────────────────────┘
-```
+You may notice limited public activity across our repositories — this is intentional.
 
----
+Singularry is in an **advanced build phase**, developing proprietary AI-driven DeFi infrastructure including autonomous agents, smart wallet execution layers, and cross-protocol integrations.
 
-## Diamond Standard (EIP-2535)
+To protect our intellectual property and prevent premature forking or cloning, our core codebase is kept private until full Go-To-Market (GTM).
 
-Each SLY wallet is a Diamond proxy that routes function calls to facet contracts:
+### Security & Responsibility First
 
-```
-User calls wallet.supplyToVenus(100 USDT)
-  → Diamond looks up selector 0x12345678
-  → Routes to Venus Facet at 0x3AE2...
-  → Facet executes using wallet's storage
-```
+We build systems that interact directly with user funds and on-chain execution. Our priorities:
 
-### Key Operations
+- Rigorous internal testing and validation
+- Third-party security audits with industry-leading firms
+- Controlled release cycles aligned with product readiness
 
-| Operation | Action | Use Case |
-|-----------|--------|----------|
-| **Add** | Register new selectors | Fresh facet attachment |
-| **Replace** | Point selectors to new address | Facet upgrade |
-| **Remove** | Delete selectors | Cleanup old functions |
+### What to Expect
 
----
+- Public audit reports prior to or during launch
+- Gradual open-sourcing of selected components post-GTM
+- Full product rollout with verifiable on-chain activity
 
-## Playbook System
+### Build > Hype
 
-Playbooks are automated DeFi strategies that execute predefined operations:
+We believe in shipping real, secure, and scalable products — not optimizing for GitHub optics during development.
 
-| Playbook | Description | Key Features |
-|----------|-------------|--------------|
-| **DCA** | Periodic token purchases | TWAP oracle, slippage protection |
-| **DRIP** | Buy-dip / sell-rip automation | EMA triggers, customizable thresholds |
-| **VTYO** | Thena V3 yield optimization | Auto-compound, health monitoring |
-| **Yield Loop** | Leveraged yield farming | Pendle PT support, sUSDe integration |
-| **Lista** | CDP management | Looping strategies, liquidation alerts |
-| **VLP** | Venus liquidation protection | Health monitoring, auto-repay |
-
----
-
-## AI Agent System
-
-### Non-Fungible Agents (NFA)
-
-On-chain AI agents with:
-- **BAP578 Standard**: Tokenized agent ownership
-- **Learning Modules**: On-chain strategy evolution
-- **Task Execution**: Automated DeFi operations
-
-### Agent Capabilities
-
-- Execute trades based on market conditions
-- Manage portfolio allocations
-- Monitor position health
-- Harvest yields automatically
-
----
-
-## Security & Audits
-
-| Audit Firm | Report |
-|------------|--------|
-| **Fairyproof** | [View Audit](https://www.fairyproof.com/report/Singularry) |
-
-### Security Practices
-
-- All strategy facets audited before deployment
-- Timelock on administrative functions
-- Emergency pause capability
-- Health factor monitoring with alerts
-- Gradual rollouts with testnet validation
+If you're here early, you're seeing us before the switch flips. Stay tuned.
 
 ---
 
 ## Related Documentation
 
-- [Smart Contract Registry](./SMART_CONTRACTS.md) - Full contract address list
-- [Facet Integration Guide](https://github.com/singularry/sly-community-facets) - Developer guide for new facets
-- [Security Audits](https://www.fairyproof.com/report/Singularry) - Audit reports
+- [Smart Contract Registry](./SMART_CONTRACTS.md) — full contract address list
+- [Facet Integration Guide](https://github.com/singularry/sly-community-facets) — developer guide for new facets
+- [Security Audits](https://www.fairyproof.com/report/Singularry) — audit reports
 
 ---
 
@@ -299,4 +383,4 @@ On-chain AI agents with:
 
 ---
 
-*Last updated: 2026-02-09*
+*Last updated: 2026-04-28*
